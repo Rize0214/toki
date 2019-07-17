@@ -15,13 +15,13 @@ public class End_canvasController : MonoBehaviour
     IEnumerator Stop_time()
     {
         End_time_score = End_score + End_time;
-        Text_Score.text = "Score: " + End_score.ToString();
-        Text_Time.text = "Time: " + End_time.ToString("f0");
+        Text_Score.text = "Score : " + End_score.ToString();
+        Text_Time.text = "Time : " + End_time.ToString("f0");
         yield return new WaitForSeconds(2f);
-        Text_Score.text = "Score " + End_score.ToString("f0") + " + Time " + End_time.ToString("f0") + "=" + End_time_score.ToString("f0");
+        Text_Score.text = "Score " + End_score.ToString("f0") + "点 + Time " + End_time.ToString("f0") + "秒 = " + End_time_score.ToString("f0");
         End_score = End_score + End_time;
         yield return new WaitForSeconds(2f);
-        Text_Score.text = "Score: " + End_score.ToString("f0");
+        Text_Score.text = "Score : " + End_score.ToString("f0")+" ポイント";
         Text_Time.text = " ";
     }
 
