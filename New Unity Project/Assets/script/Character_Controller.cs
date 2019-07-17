@@ -10,31 +10,47 @@ public class Character_Controller : MonoBehaviour
 
     public GameObject Fainal_aicon;
 
-    float speed = 0;
+    float Speed = 0;
     public int Score = 0;
     public int Count = 0;
+    bool Dont_use = false;
     // Start is called before the first frame update
     void Start()
     {
-        Text_Timer = GameObject.Find("Text_Timer"); 
+        Text_Timer = GameObject.Find("Text_Timer");
         Time = Text_Timer.GetComponent<TimeController>();
 
         //Fainal_aicon = transform.Find("Fainal_aicon").gameObject;
         Fainal_aicon.SetActive(false);
 
-        speed = 0.1f;
+        Speed = 0.1f;
         Score = 0;
         Count = 0;
+        Dont_use = true;
     }
 
     void Update()
     {
-        transform.Translate(speed, 0, 0);
+        transform.Translate(Speed, 0, 0);
+        if (Input.GetKeyDown(KeyCode.Space) && Dont_use == true)
+        {
+            StartCoroutine("Speed_UP");
+        }
     }
 
     IEnumerator Stop_time()
     {
         yield return new WaitForSeconds(0);
+    }
+
+    IEnumerator Speed_UP()
+    {
+        Dont_use = false;
+        Speed = Speed + 0.2f;
+        yield return new WaitForSeconds(1);
+        Speed = Speed - 0.2f;
+        yield return new WaitForSeconds(0);
+        Dont_use = true;
     }
 
     void OnTriggerEnter(Collider collision)
