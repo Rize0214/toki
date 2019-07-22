@@ -46,9 +46,9 @@ public class Character_Controller : MonoBehaviour
     IEnumerator Speed_UP()
     {
         Dont_use = false;
-        Speed = Speed + 0.2f;
+        Speed = Speed + 1;
         yield return new WaitForSeconds(1);
-        Speed = Speed - 0.2f;
+        Speed = Speed -1;
         yield return new WaitForSeconds(0);
         Dont_use = true;
     }
