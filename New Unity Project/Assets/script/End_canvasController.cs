@@ -5,24 +5,33 @@ using UnityEngine.UI;
 
 public class End_canvasController : MonoBehaviour
 {
-    public static float End_score = 0;
-    public static float End_time = 0;
-    public static float End_time_score = 0;
+    public static float End_Score = 0;
+    public static float End_Time = 0;
+    public static float End_Life = 0;
+    public static float End_Time_Score = 0;
+    public static float End_Life_Score = 0;
 
     public Text Text_Score = null;
     public Text Text_Time = null;
+    public Text Text_Life = null;
 
     IEnumerator Stop_time()
     {
-        End_time_score = End_score + End_time;
-        Text_Score.text = "Score : " + End_score.ToString();
-        Text_Time.text = "Time : " + End_time.ToString("f0");
+        End_Time_Score = End_Score + End_Time;
+        Text_Score.text = "Score : " + End_Score.ToString();
+        Text_Time.text = "Time : " + End_Time.ToString("f0");
+        Text_Life.text = "Life : " + End_Life.ToString();
         yield return new WaitForSeconds(2f);
-        Text_Score.text = "Score " + End_score.ToString("f0") + "点 + Time " + End_time.ToString("f0") + "秒 = " + End_time_score.ToString("f0");
-        End_score = End_score + End_time;
+        Text_Score.text = "Score " + End_Score.ToString("f0") + "点 + Time " + End_Time.ToString("f0") + "秒 = " + End_Time_Score.ToString("f0");
+        End_Score = End_Time_Score;
+        End_Life_Score = End_Score + (End_Life * 100);
         yield return new WaitForSeconds(2f);
-        Text_Score.text = "Score : " + End_score.ToString("f0")+" ポイント";
+        Text_Score.text = "Score " + End_Score.ToString("f0") + "点 + Life " + End_Life.ToString() + "×100 = " + End_Life_Score.ToString("f0");
+        End_Score = End_Life_Score;
+        yield return new WaitForSeconds(2f);
+        Text_Score.text = "Score : " + End_Score.ToString("f0") + " ポイント";
         Text_Time.text = " ";
+        Text_Life.text = " ";
     }
 
     void Start()

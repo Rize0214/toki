@@ -24,6 +24,6 @@ public class TimeController : MonoBehaviour
     }
     public void Total_Timer()
     {
-        End_canvasController.End_time = totalTime;
+        End_canvasController.End_Time = totalTime;
     }
 }
