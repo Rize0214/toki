@@ -9,6 +9,11 @@ public class Character_Controller : MonoBehaviour
     TimeController Time;
 
     public GameObject Fainal_aicon;
+    public GameObject Heart1;
+    public GameObject Heart2;
+    public GameObject Heart3;
+    public GameObject Heart4;
+    public GameObject Heart5;
 
     float Speed = 0;
     public int Score = 0;
@@ -21,9 +26,13 @@ public class Character_Controller : MonoBehaviour
     {
         Text_Timer = GameObject.Find("Text_Timer");
         Time = Text_Timer.GetComponent<TimeController>();
-
-        //Fainal_aicon = transform.Find("Fainal_aicon").gameObject;
+        
         Fainal_aicon.SetActive(false);
+        Heart1.SetActive(true);
+        Heart2.SetActive(true);
+        Heart3.SetActive(true);
+        Heart4.SetActive(true);
+        Heart5.SetActive(true);
 
         Speed = 0.2f;
         Score = 0;
@@ -35,7 +44,7 @@ public class Character_Controller : MonoBehaviour
 
     void Update()
     {
-        transform.Translate(Speed, 0, 0);
+        transform.Translate(0, 0, Speed);
         if (Input.GetKeyDown(KeyCode.Space) && Dont_use == true)
         {
             StartCoroutine("Speed_UP");
@@ -69,19 +78,17 @@ public class Character_Controller : MonoBehaviour
     }
     void Life_Down()
     {
-        if (Life <= 0)
-        {
+        Life--;
+        StartCoroutine("Speed_Down");
+
+    }
+    void End_Life()
+    {
+        
             Time.Total_Timer();
             End_canvasController.End_Score = Score;
             End_canvasController.End_Life = Life;
             SceneManager.LoadScene("End");
-        }
-        else
-        {
-            Life--;
-            StartCoroutine("Speed_Down");
-        }
-
     }
 
     void OnTriggerEnter(Collider collision)
@@ -93,6 +100,27 @@ public class Character_Controller : MonoBehaviour
         }
         if (collision.gameObject.tag == "tatemono" && Invincible_Time == false)
         {
+            if (Life == 5)
+            {
+                Heart5.SetActive(false);
+            }
+            else if (Life == 4)
+            {
+                Heart4.SetActive(false);
+            }
+            else if (Life == 3)
+            {
+                Heart3.SetActive(false);
+            }
+            else if (Life == 2)
+            {
+                Heart2.SetActive(false);
+            }
+            else if (Life <= 1)
+            {
+                Heart1.SetActive(false);
+                End_Life();
+            }
             Life_Down();
             Destroy(collision.gameObject);
         }
@@ -100,7 +128,7 @@ public class Character_Controller : MonoBehaviour
         {
             Score += 100;
             Count++;
-            if (Count == 3)
+            if (Count == 9)
             {
                 Fainal_aicon.SetActive(true);
             }

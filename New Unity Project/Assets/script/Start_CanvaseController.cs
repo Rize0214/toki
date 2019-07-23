@@ -14,4 +14,8 @@ public class Start_CanvaseController : MonoBehaviour
     {
         SceneManager.LoadScene("Main");
     }
+    public void Title_Botton()
+    {
+        SceneManager.LoadScene("Title");
+    }
 }

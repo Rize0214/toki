@@ -14,7 +14,6 @@ public class CanvasController : MonoBehaviour
 
     public Text Text_Time = null;
     public Text Text_Score = null;
-    public Text Text_Life = null;
 
     void Start()
     {
@@ -24,13 +23,11 @@ public class CanvasController : MonoBehaviour
         Chara = Character.GetComponent<Character_Controller>();
         Text_Time.text = "時間 :" + Time.totalTime.ToString("f1");
         Text_Score.text = "スコア :" + Chara.Score;
-        Text_Life.text = "Life :" + Chara.Life;
     }
     
     void Update()
     {
         Text_Time.text = "時間 :" + Time.totalTime.ToString("f1");
         Text_Score.text = "スコア :" + Chara.Score;
-        Text_Life.text = "Life :" + Chara.Life;
     }
 }

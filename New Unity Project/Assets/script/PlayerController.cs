@@ -24,7 +24,7 @@ public class PlayerController : MonoBehaviour
         float X_Rotation = Input.GetAxis("Mouse X");
         float Y_Rotation = Input.GetAxis("Mouse Y");
         PlayerTransform.transform.Rotate(0, X_Rotation, 0);
-        PlayerTransform.transform.Rotate(0, 0, Y_Rotation);
+        PlayerTransform.transform.Rotate(-Y_Rotation, 0, 0);
 
 
         float angleDir = PlayerTransform.transform.eulerAngles.y * (Mathf.PI / 180.0f);
