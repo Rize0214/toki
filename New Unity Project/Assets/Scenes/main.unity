@@ -488,7 +488,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: 682ff42344a62454ca1aee7d4cdb6780,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -8.3
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 682ff42344a62454ca1aee7d4cdb6780,
         type: 3}
@@ -1473,7 +1473,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2974cf065a9e1c44a84fbeeff8066179, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DebugMode: 1
+  DebugMode: 0
   fadeColor: {r: 0.7830189, g: 0, b: 0, a: 1}
 --- !u!1 &909117529
 GameObject:
@@ -7811,18 +7811,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 373261923}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1771823333
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1771823328}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d2a791fba6e051e4ab5798ddc98a2515, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1774235110
 GameObject:
   m_ObjectHideFlags: 0
