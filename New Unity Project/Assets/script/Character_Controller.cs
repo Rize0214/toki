@@ -14,6 +14,7 @@ public class Character_Controller : MonoBehaviour
     public GameObject Heart3;
     public GameObject Heart4;
     public GameObject Heart5;
+    public GameObject collision_object;
 
     float Speed = 0;
     public int Score = 0;
@@ -68,27 +69,26 @@ public class Character_Controller : MonoBehaviour
     }
     IEnumerator Speed_Down()
     {
-        Debug.Log("a");
         Speed = 0;
         yield return new WaitForSeconds(1);
         Invincible_Time = true;
         Speed = 0.2f;
         yield return new WaitForSeconds(1);
         Invincible_Time = false;
+        collision_object.SetActive(true);
     }
     void Life_Down()
     {
         Life--;
         StartCoroutine("Speed_Down");
-
     }
     void End_Life()
     {
-        
-            Time.Total_Timer();
-            End_canvasController.End_Score = Score;
-            End_canvasController.End_Life = Life;
-            SceneManager.LoadScene("End");
+        Life--;
+        Time.Total_Timer();
+        End_canvasController.End_Score = Score;
+        End_canvasController.End_Life = Life;
+        SceneManager.LoadScene("End");
     }
 
     void OnTriggerEnter(Collider collision)
@@ -116,13 +116,16 @@ public class Character_Controller : MonoBehaviour
             {
                 Heart2.SetActive(false);
             }
-            else if (Life <= 1)
+            else
             {
                 Heart1.SetActive(false);
                 End_Life();
             }
+            FadeManager.Instance.LoadScene("Main", 1.0f);
+            collision_object = collision.gameObject;
+            this.transform.position = new Vector3(0, 0, 0);
+            collision_object.SetActive(false);
             Life_Down();
-            Destroy(collision.gameObject);
         }
         if (collision.gameObject.tag == "aicon")
         {

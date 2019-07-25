@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class CanvasController : MonoBehaviour
 {
     GameObject Text_Timer;
-    GameObject Character;
+    GameObject toki;
 
     TimeController Time;
     Character_Controller Chara;
@@ -19,8 +19,8 @@ public class CanvasController : MonoBehaviour
     {
         Text_Timer = GameObject.Find("Text_Timer"); 
         Time = Text_Timer.GetComponent<TimeController>();
-        Character = GameObject.Find("Character");
-        Chara = Character.GetComponent<Character_Controller>();
+        toki = GameObject.Find("toki");
+        Chara = toki.GetComponent<Character_Controller>();
         Text_Time.text = "時間 :" + Time.totalTime.ToString("f1");
         Text_Score.text = "スコア :" + Chara.Score;
     }
