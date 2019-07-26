@@ -67,6 +67,12 @@ public class Character_Controller : MonoBehaviour
         Dont_use = true;
 
     }
+
+    IEnumerator Ring_Get()
+    {
+        yield return new WaitForSeconds(0.3f);
+        Destroy(collision_object);
+    }
     IEnumerator Speed_Down()
     {
         Speed = 0;
@@ -95,8 +101,10 @@ public class Character_Controller : MonoBehaviour
     {
         if (collision.gameObject.tag == "ring")
         {
+            collision_object = collision.gameObject;
+            collision_object.GetComponent<ParticleSystem>().Play();
             Time.Timer_plus();
-            Destroy(collision.gameObject);
+            StartCoroutine("Ring_Get");
         }
         if (collision.gameObject.tag == "tatemono" && Invincible_Time == false)
         {
