@@ -12,8 +12,8 @@ public class Character_Controller : MonoBehaviour
     public GameObject Heart1;
     public GameObject Heart2;
     public GameObject Heart3;
-    public GameObject Heart4;
-    public GameObject Heart5;
+    //public GameObject Heart4;
+    //public GameObject Heart5;
     public GameObject collision_object;
 
     float Speed = 0;
@@ -27,18 +27,19 @@ public class Character_Controller : MonoBehaviour
     {
         Text_Timer = GameObject.Find("Text_Timer");
         Time = Text_Timer.GetComponent<TimeController>();
-        
+
+        Fainal_aicon.SetActive(false);
         Fainal_aicon.SetActive(false);
         Heart1.SetActive(true);
         Heart2.SetActive(true);
         Heart3.SetActive(true);
-        Heart4.SetActive(true);
-        Heart5.SetActive(true);
+        //Heart4.SetActive(true);
+        //Heart5.SetActive(true);
 
         Speed = 0.5f;
         Score = 0;
         Count = 0;
-        Life = 5;
+        Life = 3;
         Dont_use = true;
         Invincible_Time = false;
     }
@@ -108,17 +109,7 @@ public class Character_Controller : MonoBehaviour
         }
         if (collision.gameObject.tag == "tatemono" && Invincible_Time == false)
         {
-            if (Life == 5)
-            {
-                Heart5.SetActive(false);
-                FadeManager.Instance.LoadScene("Main", 1.0f);
-            }
-            else if (Life == 4)
-            {
-                Heart4.SetActive(false);
-                FadeManager.Instance.LoadScene("Main", 1.0f);
-            }
-            else if (Life == 3)
+            if (Life == 3)
             {
                 Heart3.SetActive(false);
                 FadeManager.Instance.LoadScene("Main", 1.0f);
