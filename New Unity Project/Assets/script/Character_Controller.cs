@@ -129,6 +129,10 @@ public class Character_Controller : MonoBehaviour
             collision_object.SetActive(false);
             Life_Down();
         }
+        if (collision.gameObject.tag == "WildToki")
+        {
+            Score += 100;
+        }
         if (collision.gameObject.tag == "aicon")
         {
             Score += 100;

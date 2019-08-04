@@ -7,13 +7,20 @@ public class TimeController : MonoBehaviour
 {
     // メンバ変数
     public float totalTime = 0.0f;
-
-    // Update is called once per frame
+    GameObject toki;
+    Character_Controller Cyara;
+    void Start()
+    {
+        toki = GameObject.Find("toki");
+        Cyara = toki.GetComponent<Character_Controller>();
+    }
     void FixedUpdate()
     {
         totalTime -= Time.deltaTime;
         if (totalTime <= 0)
         {
+            End_canvasController.End_Score = Cyara.Score;
+            End_canvasController.End_Life = Cyara.Life;
             SceneManager.LoadScene("End");
         }
     }
