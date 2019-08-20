@@ -22,6 +22,7 @@ public class Character_Controller : MonoBehaviour
     public int Life = 0;
     bool Dont_use = false;
     bool Invincible_Time = false;
+    bool Flag_toki = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -42,6 +43,7 @@ public class Character_Controller : MonoBehaviour
         Life = 3;
         Dont_use = true;
         Invincible_Time = false;
+        Flag_toki = false;
     }
 
     void Update()
@@ -66,7 +68,6 @@ public class Character_Controller : MonoBehaviour
         Speed = Speed - 1;
         yield return new WaitForSeconds(0);
         Dont_use = true;
-
     }
 
     IEnumerator Ring_Get()
@@ -132,6 +133,7 @@ public class Character_Controller : MonoBehaviour
         if (collision.gameObject.tag == "WildToki")
         {
             Score += 100;
+            Flag_toki = false;
         }
         if (collision.gameObject.tag == "aicon")
         {
