@@ -8,8 +8,8 @@ public class Character_Controller : MonoBehaviour
     GameObject Text_Timer;
     TimeController Time;
 
-    Vector3 cameraAngle; //カメラの角度を代入する変数
-    public new GameObject camera; //カメラオブジェクトを格納
+    //Vector3 cameraAngle; //カメラの角度を代入する変数
+    //public new GameObject camera; //カメラオブジェクトを格納
 
     public GameObject Fainal_aicon;
     public GameObject Heart1;
@@ -25,7 +25,7 @@ public class Character_Controller : MonoBehaviour
     public int Life = 0;
     bool Dont_use = false;
     bool Invincible_Time = false;
-    bool Flag_toki = false;
+    //bool Flag_toki = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -46,7 +46,7 @@ public class Character_Controller : MonoBehaviour
         Life = 3;
         Dont_use = true;
         Invincible_Time = false;
-        Flag_toki = false;
+        //Flag_toki = false;
     }
 
     void Update()
@@ -135,10 +135,13 @@ public class Character_Controller : MonoBehaviour
         }
         if (collision.gameObject.tag == "WildToki")
         {
+            collision_object = collision.gameObject;
             Score += 100;
-            Flag_toki = false;
-            //カメラの方向を取得
-            cameraAngle = camera.transform.rotation * Vector3.forward;
+            //Flag_toki = false;
+            ////カメラの方向を取得
+            //cameraAngle = camera.transform.rotation * Vector3.forward;
+            //collision_object.transform.rotation = camera.transform.rotation; //これが正しい(トキの向きを変更)
+
         }
         if (collision.gameObject.tag == "aicon")
         {
