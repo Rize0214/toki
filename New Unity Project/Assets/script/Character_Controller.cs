@@ -8,6 +8,9 @@ public class Character_Controller : MonoBehaviour
     GameObject Text_Timer;
     TimeController Time;
 
+    Vector3 cameraAngle; //カメラの角度を代入する変数
+    public new GameObject camera; //カメラオブジェクトを格納
+
     public GameObject Fainal_aicon;
     public GameObject Heart1;
     public GameObject Heart2;
@@ -134,6 +137,8 @@ public class Character_Controller : MonoBehaviour
         {
             Score += 100;
             Flag_toki = false;
+            //カメラの方向を取得
+            cameraAngle = camera.transform.rotation * Vector3.forward;
         }
         if (collision.gameObject.tag == "aicon")
         {
