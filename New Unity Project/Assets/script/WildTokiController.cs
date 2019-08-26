@@ -16,7 +16,7 @@ public class WildTokiController : MonoBehaviour
     public Transform endMarker;
 
     // スピード
-    public float speed = 0.001f;
+    public float speed = 1.0f;
 
     //二点間の距離を入れる
     private float distance_two;
