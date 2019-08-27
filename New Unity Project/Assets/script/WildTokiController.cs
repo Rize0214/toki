@@ -28,7 +28,6 @@ public class WildTokiController : MonoBehaviour
             //カメラの方向を取得
             cameraAngle = camera.transform.rotation * Vector3.forward;
             transform.rotation = camera.transform.rotation; //これが正しい(トキの向きを変更)
-
         }
     }
     void Start()
