@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class Character_Controller : MonoBehaviour
@@ -18,13 +19,15 @@ public class Character_Controller : MonoBehaviour
     //public GameObject Heart4;
     //public GameObject Heart5;
     public GameObject collision_object;
+    public GameObject collision_Save;
 
     float Speed = 0;
     public int Score = 0;
     public int Count = 0;
+    public int Lost_Count = 0;
     public int Life = 0;
-    bool Dont_use = false;
-    bool Invincible_Time = false;
+    public Text Text_number_Aicon = null;
+
     //bool Flag_toki = false;
     // Start is called before the first frame update
     void Start()
@@ -40,59 +43,30 @@ public class Character_Controller : MonoBehaviour
         //Heart4.SetActive(true);
         //Heart5.SetActive(true);
 
-        Speed = 0.5f;
+        Speed = 1.5f;
         Score = 0;
         Count = 0;
+        Lost_Count = 8;
         Life = 3;
-        Dont_use = true;
-        Invincible_Time = false;
+        Text_number_Aicon.text = "0";
+        collision_Save = GameObject.FindGameObjectWithTag("A0");
+
         //Flag_toki = false;
     }
 
     void Update()
     {
         transform.Translate(0, 0, Speed);
-        if (Input.GetKeyDown(KeyCode.Space) && Dont_use == true)
+        if (Lost_Count >= 1)
         {
-            StartCoroutine("Speed_UP");
+            Text_number_Aicon.text = "残りのアイコンの数 ： " + Lost_Count.ToString();
+        }
+        else
+        {
+            Text_number_Aicon.text = "最後のアイコンをとれ！！";
         }
     }
 
-    IEnumerator Stop_time()
-    {
-        yield return new WaitForSeconds(0);
-    }
-
-    IEnumerator Speed_UP()
-    {
-        Dont_use = false;
-        Speed = Speed + 1;
-        yield return new WaitForSeconds(1);
-        Speed = Speed - 1;
-        yield return new WaitForSeconds(0);
-        Dont_use = true;
-    }
-
-    IEnumerator Ring_Get()
-    {
-        yield return new WaitForSeconds(0.3f);
-        Destroy(collision_object);
-    }
-    IEnumerator Speed_Down()
-    {
-        Speed = 0;
-        yield return new WaitForSeconds(1);
-        Invincible_Time = true;
-        Speed = 0.5f;
-        yield return new WaitForSeconds(2);
-        Invincible_Time = false;
-        collision_object.SetActive(true);
-    }
-    void Life_Down()
-    {
-        Life--;
-        StartCoroutine("Speed_Down");
-    }
     void End_Life()
     {
         Life--;
@@ -111,7 +85,7 @@ public class Character_Controller : MonoBehaviour
             Time.Timer_plus();
             StartCoroutine("Ring_Get");
         }
-        if (collision.gameObject.tag == "tatemono" && Invincible_Time == false)
+        if (collision.gameObject.tag == "tatemono")
         {
             if (Life == 3)
             {
@@ -129,9 +103,10 @@ public class Character_Controller : MonoBehaviour
                 End_Life();
             }
             collision_object = collision.gameObject;
-            this.transform.position = new Vector3(0, 0, 0);
+            //this.transform.position = new Vector3(0, 0, 0);
             collision_object.SetActive(false);
-            Life_Down();
+            Life--;
+            this.transform.position = collision_Save.transform.position;
         }
         if (collision.gameObject.tag == "WildToki")
         {
@@ -147,7 +122,8 @@ public class Character_Controller : MonoBehaviour
         {
             Score += 100;
             Count++;
-            if (Count == 9)
+            Lost_Count--;
+            if (Count == 8)
             {
                 Fainal_aicon.SetActive(true);
             }
@@ -160,8 +136,23 @@ public class Character_Controller : MonoBehaviour
             End_canvasController.End_Score = Score;
             End_canvasController.End_Life = Life;
             Time.Total_Timer();
-            StartCoroutine("Stop_time");
             SceneManager.LoadScene("End");
+        }
+        if (collision.gameObject.tag == "A1")
+        {
+            collision_Save = collision.gameObject;
+        }
+        if (collision.gameObject.tag == "A2")
+        {
+            collision_Save = collision.gameObject;
+        }
+        if (collision.gameObject.tag == "A3")
+        {
+            collision_Save = collision.gameObject;
+        }
+        if (collision.gameObject.tag == "A4")
+        {
+            collision_Save = collision.gameObject;
         }
     }
 }

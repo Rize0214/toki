@@ -7,43 +7,51 @@ public class Text_aicon : MonoBehaviour
 {
     public Text Text_Aicon = null;
     public GameObject collision_object;
-    GameObject player = null;
     void Start()
     {
-        Text_Aicon.text = "アイコンのある名所説明";
-        player = null;
+        Text_Aicon.text = " ";
     }
     void A()
     {
         switch (collision_object.tag)
         {
-            case "a":
-                Text_Aicon.text = "アイコンのある名所説明";
+            case "tokimori":
+                Text_Aicon.text = "アイコンのある名所説明 : (トキ森)";
                 break;
-            case "b":
-                Text_Aicon.text = "アイコンのある名所説明";
+            case "kamoko":
+                Text_Aicon.text = "アイコンのある名所説明 : (加茂湖)";
                 break;
-            case "c":
-                Text_Aicon.text = "アイコンのある名所説明";
+            case "hasamiiwa":
+                Text_Aicon.text = "アイコンのある名所説明 : (弁慶のはさみ岩)";
                 break;
-            case "d":
-                Text_Aicon.text = "アイコンのある名所説明";
+            case "tarai":
+                Text_Aicon.text = "アイコンのある名所説明 : (たらい船)";
                 break;
-            case "e":
-                Text_Aicon.text = "アイコンのある名所説明";
+            case "hutatugame":
+                Text_Aicon.text = "アイコンのある名所説明 : (二ツ亀海水浴場)";
+                break;
+            case "kinnzann":
+                Text_Aicon.text = "アイコンのある名所説明 : (金銀山)";
+                break;
+            case "sadokisenn":
+                Text_Aicon.text = "アイコンのある名所説明 : (佐渡汽船)";
+                break;
+            case "f":
+                Text_Aicon.text = "アイコンのある名所説明 : (f)";
                 break;
             default:
-                Text_Aicon.text = "アイコンのある名所説明";
+                Text_Aicon.text = " ";
                 break;
         }
     }
     void OnTriggerEnter(Collider collision)
     {
         collision_object = collision.gameObject;
+        A();
     }
     void OnTriggerExit(Collider collision)
     {
-        collision_object = collision.gameObject;
+        Text_Aicon.text = " ";
     }
-    
+
 }

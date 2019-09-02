@@ -14,7 +14,6 @@ public class Transparent : MonoBehaviour
     {
         if (collision.gameObject.tag == "Interval")
         {
-            Debug.Log("a");
             Color color = gameObject.GetComponent<Renderer>().material.color;
             color.a = 0.3f;
             gameObject.GetComponent<Renderer>().material.color = color;

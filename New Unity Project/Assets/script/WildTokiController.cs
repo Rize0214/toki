@@ -5,7 +5,7 @@ using UnityEngine;
 public class WildTokiController : MonoBehaviour
 {
     //Vector3.Lerp(始まりの位置, 終わりの位置, 現在の位置)
-
+    Animator _anim;
     bool Flag_toki = false;
 
     Vector3 cameraAngle; //カメラの角度を代入する変数
@@ -32,6 +32,7 @@ public class WildTokiController : MonoBehaviour
     }
     void Start()
     {
+        this._anim = GetComponent<Animator>();
         Flag_toki = false;
         //二点間の距離を代入(スピード調整に使う)
         distance_two = Vector3.Distance(startMarker.position, endMarker.position);
