@@ -24,6 +24,7 @@ public class WildTokiController : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
+            GetComponent<Wild_Toki_Speed>().enabled = false;
             Flag_toki = true;
             //カメラの方向を取得
             cameraAngle = camera.transform.rotation * Vector3.forward;
@@ -46,7 +47,7 @@ public class WildTokiController : MonoBehaviour
             float present_Location = (Time.time * speed) / distance_two;
 
             // オブジェクトの移動(ここだけ変わった！)
-            transform.position = Vector3.Slerp(startMarker.position, endMarker.position, present_Location);
+            transform.position = Vector3.Lerp(startMarker.position, endMarker.position, present_Location);
 
             cameraAngle = camera.transform.rotation * Vector3.forward;
             transform.rotation = camera.transform.rotation; //これが正しい(トキの向きを変更)
