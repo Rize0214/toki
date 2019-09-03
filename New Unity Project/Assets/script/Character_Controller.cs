@@ -22,13 +22,14 @@ public class Character_Controller : MonoBehaviour
     public GameObject collision_Save;
 
     float Speed = 0;
-    public int Score = 0;
+    public float Score = 0;
     public int Count = 0;
     public int Lost_Count = 0;
     public int Life = 0;
     public Text Text_number_Aicon = null;
 
-    //bool Flag_toki = false;
+    bool Flag_Gold_toki = false;
+    float Gold_point = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -46,12 +47,13 @@ public class Character_Controller : MonoBehaviour
         Speed = 1.5f;
         Score = 0;
         Count = 0;
-        Lost_Count = 8;
+        Lost_Count = 5;
         Life = 3;
         Text_number_Aicon.text = "0";
         collision_Save = GameObject.FindGameObjectWithTag("A0");
 
-        //Flag_toki = false;
+        Flag_Gold_toki = false;
+        Gold_point = 1;
     }
 
     void Update()
@@ -83,19 +85,19 @@ public class Character_Controller : MonoBehaviour
             collision_object = collision.gameObject;
             collision_object.GetComponent<ParticleSystem>().Play();
             Time.Timer_plus();
-            StartCoroutine("Ring_Get");
+            Score += 100 * Gold_point;
         }
         if (collision.gameObject.tag == "tatemono")
         {
             if (Life == 3)
             {
                 Heart3.SetActive(false);
-                FadeManager.Instance.LoadScene("Main", 1.0f);
+                //FadeManager.Instance.LoadScene("Main", 1.0f);
             }
             else if (Life == 2)
             {
                 Heart2.SetActive(false);
-                FadeManager.Instance.LoadScene("Main", 1.0f);
+                //FadeManager.Instance.LoadScene("Main", 1.0f);
             }
             else
             {
@@ -111,28 +113,122 @@ public class Character_Controller : MonoBehaviour
         if (collision.gameObject.tag == "WildToki")
         {
             collision_object = collision.gameObject;
-            Score += 100;
-            //Flag_toki = false;
-            ////カメラの方向を取得
-            //cameraAngle = camera.transform.rotation * Vector3.forward;
-            //collision_object.transform.rotation = camera.transform.rotation; //これが正しい(トキの向きを変更)
-
+            Score += 500 * Gold_point;
+            Gold_point = Gold_point + 0.5f;
+            { 
+                //Flag_toki = false;
+                ////カメラの方向を取得
+                //cameraAngle = camera.transform.rotation * Vector3.forward;
+                //collision_object.transform.rotation = camera.transform.rotation; //これが正しい(トキの向きを変更)
+            }
         }
         if (collision.gameObject.tag == "aicon")
         {
-            Score += 100;
+            if(collision.gameObject.name == "kinnzann")
+            {
+                Gold_point = 0.5f;
+            }
+            if(collision.gameObject.name == "kamoko")
+            {
+                switch (Life)
+                {
+                    case 1:
+                        Life++;
+                        Heart3.SetActive(true);
+                        break;
+                    case 2:
+                        Life++;
+                        Heart3.SetActive(true);
+                        break;
+                    case 3:
+                        Score += 200 * Gold_point;
+                        break;
+                    default:
+                        Score += 100;
+                        break;
+                }
+            }
+            if (collision.gameObject.name == "hasi")
+            {
+                switch (Life)
+                {
+                    case 1:
+                        Life++;
+                        Heart3.SetActive(true);
+                        break;
+                    case 2:
+                        Life++;
+                        Heart3.SetActive(true);
+                        break;
+                    case 3:
+                        Score += 200 * Gold_point;
+                        break;
+                    default:
+                        Score += 100;
+                        break;
+                }
+            }
+            Score += 1000 * Gold_point;
             Count++;
             Lost_Count--;
-            if (Count == 8)
+            if (Count == 5)
             {
                 Fainal_aicon.SetActive(true);
             }
             Destroy(collision.gameObject);
         }
+
+        {
+            //if (collision.gameObject.tag == "kinnzann_point")
+            //{
+            //    Gold_point = 1.5f;
+            //}
+            //if (collision.gameObject.tag == "kamoko_Life")
+            //{
+            //    switch (Life)
+            //    {
+            //        case 1:
+            //            Life++;
+            //            Heart3.SetActive(true);
+            //            break;
+            //        case 2:
+            //            Life++;
+            //            Heart3.SetActive(true);
+            //            break;
+            //        case 3:
+            //            Score += 200 * Gold_point;
+            //            break;
+            //        default:
+            //            Score += 100;
+            //            break;
+            //    }
+            //}
+            //if (collision.gameObject.tag == "hasi_Life")
+            //{
+            //    switch (Life)
+            //    {
+            //        case 1:
+            //            Life++;
+            //            Heart3.SetActive(true);
+            //            break;
+            //        case 2:
+            //            Life++;
+            //            Heart3.SetActive(true);
+            //            break;
+            //        case 3:
+            //            Score += 200 * Gold_point;
+            //            break;
+            //        default:
+            //            Score += 100;
+            //            break;
+            //    }
+            //}
+        }
+
         if (collision.gameObject.tag == "End_aicon")
         {
             //スコア処理を追加
-            Score += 100;
+            Score += 1000 * Gold_point;
             End_canvasController.End_Score = Score;
             End_canvasController.End_Life = Life;
             Time.Total_Timer();

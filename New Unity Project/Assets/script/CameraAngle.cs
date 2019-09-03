@@ -22,7 +22,27 @@ public class CameraAngle : MonoBehaviour
         thrust = 10f;　　　　　　　　　　　　　　//勢いの初期化
         moveForceMultiplier = 1;
     }
-
+    void OnTriggerEnter(Collider collision)
+    {
+        if (collision.gameObject.tag == "ring")
+        {
+            StartCoroutine("Kasoku");
+        }
+        if (collision.gameObject.tag == "tarai_speed")
+        {
+            moveForceMultiplier += 1;
+        }
+        if (collision.gameObject.tag == "hutatugame_speed")
+        {
+            moveForceMultiplier += 1;
+        }
+    }
+    IEnumerator Kasoku()
+    {
+        moveForceMultiplier = moveForceMultiplier + 10;
+        yield return new WaitForSeconds(2);
+        moveForceMultiplier = moveForceMultiplier - 10;
+    }
     void FixedUpdate()
     {
         Vector3 moveVector = Vector3.zero;    // 移動速度の入力

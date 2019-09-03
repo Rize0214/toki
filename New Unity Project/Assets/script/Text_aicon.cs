@@ -36,8 +36,8 @@ public class Text_aicon : MonoBehaviour
             case "sadokisenn":
                 Text_Aicon.text = "アイコンのある名所説明 : (佐渡汽船)";
                 break;
-            case "f":
-                Text_Aicon.text = "アイコンのある名所説明 : (f)";
+            case "hasi":
+                Text_Aicon.text = "アイコンのある名所説明 : (橋)";
                 break;
             default:
                 Text_Aicon.text = " ";

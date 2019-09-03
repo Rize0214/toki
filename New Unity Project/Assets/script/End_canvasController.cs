@@ -24,7 +24,7 @@ public class End_canvasController : MonoBehaviour
         yield return new WaitForSeconds(2f);
         Text_Score.text = "Score " + End_Score.ToString("f0") + "点 + Time " + End_Time.ToString("f0") + "秒 = " + End_Time_Score.ToString("f0");
         End_Score = End_Time_Score;
-        End_Life_Score = End_Score + (End_Life * 100);
+        End_Life_Score = End_Score + (End_Life * 200);
         yield return new WaitForSeconds(2f);
         Text_Score.text = "Score " + End_Score.ToString("f0") + "点 + Life " + End_Life.ToString() + "×100 = " + End_Life_Score.ToString("f0");
         End_Score = End_Life_Score;
