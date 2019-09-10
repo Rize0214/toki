@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 public class Character_Controller : MonoBehaviour
 {
     GameObject Text_Timer;
+    public GameObject Particle_speed;
     TimeController Time;
 
     //Vector3 cameraAngle; //カメラの角度を代入する変数
@@ -68,7 +69,6 @@ public class Character_Controller : MonoBehaviour
             Text_number_Aicon.text = "最後のアイコンをとれ！！";
         }
     }
-
     void End_Life()
     {
         Life--;
@@ -83,9 +83,10 @@ public class Character_Controller : MonoBehaviour
         if (collision.gameObject.tag == "ring")
         {
             collision_object = collision.gameObject;
-            collision_object.GetComponent<ParticleSystem>().Play();
+            Particle_speed.transform.position = new Vector3(0, 3, 30);
             Time.Timer_plus();
             Score += 100 * Gold_point;
+            Destroy(collision_object);
         }
         if (collision.gameObject.tag == "tatemono")
         {
@@ -252,3 +253,21 @@ public class Character_Controller : MonoBehaviour
         }
     }
 }
+//private ParticleSystem ps;
+//public float hSliderValue = 5.0f;
+
+//void Start()
+//{
+//    ps = GetComponent<ParticleSystem>();
+//}
+
+//void Update()
+//{
+//    var emission = ps.emission;
+//    emission.rateOverTime = hSliderValue;
+//}
+
+//void OnGUI()
+//{
+//    hSliderValue = GUI.HorizontalSlider(new Rect(25, 45, 100, 30), hSliderValue, 5.0f, 200.0f);
+//}

@@ -27,14 +27,11 @@ public class Transparent_parutena : MonoBehaviour
     {
         Stop = true;
         Toumei = true;
-        Debug.Log("true");
         yield return new WaitForSeconds(1.5f);
         Toumei = false;
-        Debug.Log("1,5秒");
         yield return new WaitForSeconds(1.5f);
         Stop = false;
         Toumei = true;
-        Debug.Log("3秒");
     }
 
     void Update()
@@ -42,7 +39,6 @@ public class Transparent_parutena : MonoBehaviour
         color.r = 0.4f;
         color.g = 1f;
         color.b = 1f;
-        Debug.Log(color.a);
         if (Toumei == true)
         {
             if (Stop == false)
