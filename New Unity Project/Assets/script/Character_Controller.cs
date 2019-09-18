@@ -21,6 +21,7 @@ public class Character_Controller : MonoBehaviour
     //public GameObject Heart5;
     public GameObject collision_object;
     public GameObject collision_Save;
+    int Wild_toki_Count;
 
     float Speed = 0;
     public float Score = 0;
@@ -44,6 +45,7 @@ public class Character_Controller : MonoBehaviour
         Heart3.SetActive(true);
         //Heart4.SetActive(true);
         //Heart5.SetActive(true);
+        Wild_toki_Count = 0;
 
         Speed = 1.5f;
         Score = 0;
@@ -105,8 +107,12 @@ public class Character_Controller : MonoBehaviour
                 Heart1.SetActive(false);
                 End_Life();
             }
+            if (Wild_toki_Count >= 1)
+            {
+                Wild_toki_Count--;
+                Gold_point = Gold_point - 0.5f;
+            }
             collision_object = collision.gameObject;
-            //this.transform.position = new Vector3(0, 0, 0);
             collision_object.SetActive(false);
             Life--;
             this.transform.position = collision_Save.transform.position;
@@ -116,20 +122,15 @@ public class Character_Controller : MonoBehaviour
             collision_object = collision.gameObject;
             Score += 500 * Gold_point;
             Gold_point = Gold_point + 0.5f;
-            { 
-                //Flag_toki = false;
-                ////カメラの方向を取得
-                //cameraAngle = camera.transform.rotation * Vector3.forward;
-                //collision_object.transform.rotation = camera.transform.rotation; //これが正しい(トキの向きを変更)
-            }
+            Wild_toki_Count++;
         }
         if (collision.gameObject.tag == "aicon")
         {
-            if(collision.gameObject.name == "kinnzann")
+            if (collision.gameObject.name == "kinnzann")
             {
                 Gold_point = 0.5f;
             }
-            if(collision.gameObject.name == "kamoko")
+            if (collision.gameObject.name == "kamoko")
             {
                 switch (Life)
                 {
